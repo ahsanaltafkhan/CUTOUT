@@ -1,62 +1,71 @@
+const themeToggleBtn = document.getElementById('theme-toggle');
+const rootElement = document.documentElement;
+
+// Theme Initialization
+const savedTheme = localStorage.getItem('theme') || 'dark';
+rootElement.setAttribute('data-theme', savedTheme);
+
+themeToggleBtn.addEventListener('click', () => {
+    const currentTheme = rootElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    rootElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+});
+
+// App Logic
 const card = document.getElementById('upload-card');
 const fileInput = document.getElementById('file-input');
-const stateUpload = document.getElementById('state-upload');
-const stateLoading = document.getElementById('state-loading');
-const stateResult = document.getElementById('state-result');
 const resultImg = document.getElementById('result-img');
 const downloadBtn = document.getElementById('download-btn');
 const resetBtn = document.getElementById('reset-btn');
 
-// --- 3D Hover Microinteraction ---
-document.addEventListener('mousemove', (e) => {
-    // Only apply 3D effect if the screen is large enough (not on mobile)
-    if (window.innerWidth > 768) {
-        let xAxis = (window.innerWidth / 2 - e.pageX) / 40;
-        let yAxis = (window.innerHeight / 2 - e.pageY) / 40;
-        card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+function switchState(stateId) {
+    // Smooth transition between states
+    const activeState = document.querySelector('.upload-state.active');
+    if(activeState) {
+        activeState.style.opacity = '0';
+        activeState.style.transform = 'translateY(-10px)';
+        setTimeout(() => {
+            activeState.classList.remove('active');
+            activeState.style = ''; // reset inline styles
+            
+            const nextState = document.getElementById(stateId);
+            nextState.classList.add('active');
+        }, 300); // Wait for fade out
+    } else {
+        document.getElementById(stateId).classList.add('active');
     }
-});
-card.addEventListener('mouseleave', () => {
-    card.style.transform = `rotateY(0deg) rotateX(0deg)`;
-});
-
-// --- Drag & Drop Mechanics ---
-['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-    card.addEventListener(eventName, preventDefaults, false);
-});
-
-function preventDefaults(e) {
-    e.preventDefault();
-    e.stopPropagation();
 }
 
+// Drag & Drop Handling
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    card.addEventListener(eventName, e => {
+        e.preventDefault();
+        e.stopPropagation();
+    });
+});
+
 ['dragenter', 'dragover'].forEach(eventName => {
-    card.addEventListener(eventName, () => card.classList.add('dragover'), false);
+    card.addEventListener(eventName, () => card.classList.add('dragover'));
 });
 
 ['dragleave', 'drop'].forEach(eventName => {
-    card.addEventListener(eventName, () => card.classList.remove('dragover'), false);
+    card.addEventListener(eventName, () => card.classList.remove('dragover'));
 });
 
-card.addEventListener('drop', (e) => {
-    let dt = e.dataTransfer;
-    let files = dt.files;
-    if (files.length) handleFile(files[0]);
+card.addEventListener('drop', e => {
+    if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
 });
 
 fileInput.addEventListener('change', function() {
     if (this.files.length) handleFile(this.files[0]);
 });
 
-// --- API Handling ---
-function switchState(stateId) {
-    document.querySelectorAll('.upload-state').forEach(el => el.classList.remove('active'));
-    document.getElementById(stateId).classList.add('active');
-}
-
+// API Processing
 async function handleFile(file) {
     if (!file.type.startsWith('image/')) {
-        alert('Please upload an image file.');
+        alert('Please upload a valid image file.');
         return;
     }
 
@@ -66,13 +75,12 @@ async function handleFile(file) {
     formData.append('image', file);
 
     try {
-        // Calls the Vercel Serverless Function
         const response = await fetch('/api/remove-bg', {
             method: 'POST',
             body: formData
         });
 
-        if (!response.ok) throw new Error('Failed to process image');
+        if (!response.ok) throw new Error('API Error');
 
         const blob = await response.blob();
         const url = URL.createObjectURL(blob);
@@ -83,12 +91,11 @@ async function handleFile(file) {
         switchState('state-result');
     } catch (error) {
         console.error(error);
-        alert('Error removing background. Please try again.');
+        alert('Processing failed. Please ensure your API key is configured correctly in Vercel.');
         switchState('state-upload');
     }
 }
 
-// --- Reset ---
 resetBtn.addEventListener('click', () => {
     fileInput.value = '';
     switchState('state-upload');
