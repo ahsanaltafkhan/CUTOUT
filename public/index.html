@@ -1,57 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cutout | AI Background Remover</title>
+    <title>Cutout | Pro Motion UI</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=inter@400,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Animated Background Blobs -->
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
+    <nav class="navbar animate-fade-down">
+        <div class="logo">Cut<span>out</span></div>
+        <div class="nav-controls">
+            <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                <i class="fa-solid fa-moon dark-icon"></i>
+                <i class="fa-solid fa-sun light-icon"></i>
+            </button>
+        </div>
+    </nav>
 
     <main class="container">
-        <header>
-            <h1 class="logo">Cut<span>out</span></h1>
-            <p>Experience seamless, AI-powered background removal.</p>
+        <header class="hero animate-slide-up">
+            <h1 class="stagger-1">Remove backgrounds in <span>motion.</span></h1>
+            <p class="stagger-2">Precision AI extraction with a fluid, distraction-free interface.</p>
         </header>
 
-        <!-- 3D Card Container -->
-        <div class="card-container">
-            <div class="upload-card" id="upload-card">
+        <section class="bento-grid">
+            <div class="bento-card upload-card stagger-3" id="upload-card">
                 <input type="file" id="file-input" accept="image/*" hidden>
                 
-                <!-- Initial State -->
                 <div class="upload-state active" id="state-upload">
-                    <i class="fa-solid fa-cloud-arrow-up glow-icon"></i>
-                    <h2>Drag & Drop your image here</h2>
-                    <p>or</p>
-                    <button class="btn-primary" onclick="document.getElementById('file-input').click()">Browse Files</button>
+                    <div class="icon-ring"><i class="fa-solid fa-plus"></i></div>
+                    <h2>Drop Image Here</h2>
+                    <p>PNG, JPG up to 10MB</p>
+                    <button class="btn-primary" onclick="document.getElementById('file-input').click()">Browse Device</button>
                 </div>
 
-                <!-- Loading State -->
                 <div class="upload-state" id="state-loading">
-                    <div class="spinner"></div>
-                    <h2>Processing Magic...</h2>
-                    <p>Extracting your subject with AI.</p>
+                    <div class="custom-loader"></div>
+                    <h2>Isolating Subject</h2>
+                    <p>Applying neural masking...</p>
                 </div>
 
-                <!-- Result State -->
                 <div class="upload-state" id="state-result">
-                    <img id="result-img" src="" alt="Output Image">
+                    <div class="result-wrapper">
+                        <img id="result-img" src="" alt="Output">
+                    </div>
                     <div class="actions">
-                        <a id="download-btn" class="btn-primary" download="cutout-result.png">Download HD</a>
-                        <button class="btn-secondary" id="reset-btn">Upload Another</button>
+                        <a id="download-btn" class="btn-primary" download="cutout-result.png">Download</a>
+                        <button class="btn-secondary" id="reset-btn">Reset</button>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <!-- Bento feature cards for visual balance -->
+            <div class="bento-card feature-card stagger-4">
+                <i class="fa-solid fa-bolt feature-icon"></i>
+                <h3>Lightning Fast</h3>
+                <p>Processes complex edges in under 3 seconds.</p>
+            </div>
+            
+            <div class="bento-card feature-card stagger-5">
+                <i class="fa-solid fa-shield-halved feature-icon"></i>
+                <h3>Privacy First</h3>
+                <p>Images are processed temporarily and never stored.</p>
+            </div>
+        </section>
     </main>
 
-    <footer>
+    <footer class="animate-fade-up stagger-6">
         <p>A project by <strong>Ahsan Altaf</strong></p>
         <div class="social-links">
             <a href="https://www.instagram.com/thecsgrad/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
