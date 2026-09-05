@@ -21,18 +21,17 @@ const downloadBtn = document.getElementById('download-btn');
 const resetBtn = document.getElementById('reset-btn');
 
 function switchState(stateId) {
-    // Smooth transition between states
     const activeState = document.querySelector('.upload-state.active');
     if(activeState) {
         activeState.style.opacity = '0';
         activeState.style.transform = 'translateY(-10px)';
         setTimeout(() => {
             activeState.classList.remove('active');
-            activeState.style = ''; // reset inline styles
+            activeState.style = '';
             
             const nextState = document.getElementById(stateId);
             nextState.classList.add('active');
-        }, 300); // Wait for fade out
+        }, 300);
     } else {
         document.getElementById(stateId).classList.add('active');
     }
@@ -108,7 +107,6 @@ faqQuestions.forEach(question => {
         const answer = question.nextElementSibling;
         const icon = question.querySelector('i');
         
-        // Close all other open FAQs
         document.querySelectorAll('.faq-answer').forEach(ans => {
             if (ans !== answer) ans.style.maxHeight = null;
         });
@@ -116,7 +114,6 @@ faqQuestions.forEach(question => {
             if (icn !== icon) icn.className = 'fa-solid fa-plus';
         });
 
-        // Toggle current FAQ
         if (answer.style.maxHeight) {
             answer.style.maxHeight = null;
             icon.className = 'fa-solid fa-plus';
@@ -127,20 +124,7 @@ faqQuestions.forEach(question => {
     });
 });
 
-// --- Carousel Scroll Logic ---
-const carouselTrack = document.getElementById('carousel-track');
-const prevBtn = document.querySelector('.prev-btn');
-const nextBtn = document.querySelector('.next-btn');
-
-const scrollAmount = 320; // Width of card + gap
-
-nextBtn.addEventListener('click', () => {
-    carouselTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-});
-
-prevBtn.addEventListener('click', () => {
-    carouselTrack.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-});
+// --- Interactive Before/After Slider Logic ---
 const sliderRange = document.getElementById('slider-range');
 const beforeLayer = document.getElementById('before-layer');
 const sliderHandle = document.getElementById('slider-handle');
