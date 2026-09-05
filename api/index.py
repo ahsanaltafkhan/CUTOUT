@@ -5,8 +5,8 @@ import os
 
 app = Flask(__name__)
 
-# This pulls the API key from Vercel's Environment Variables
-API_KEY = os.environ.get('REMOVE_BG_API_KEY', 'your_fallback_api_key_here')
+# Pulls the API key from Vercel's Environment Variables
+API_KEY = os.environ.get('REMOVE_BG_API_KEY', 'fallback_api_key')
 
 @app.route('/api/remove-bg', methods=['POST'])
 def remove_background():
