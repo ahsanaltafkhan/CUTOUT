@@ -407,17 +407,13 @@ footer strong { color: var(--text-main); }
 .after-layer {
     background: repeating-conic-gradient(#222 0% 25%, #111 0% 50%) 50% / 20px 20px;
     z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .after-layer img {
-    object-fit: contain;
-    max-height: 90%;
+    object-fit: cover;
 }
 
-/* Before Layer clips dynamically based on JavaScript */
+/* Before Layer clips dynamically based on JavaScript width */
 .before-layer {
     position: absolute;
     top: 0;
@@ -433,7 +429,7 @@ footer strong { color: var(--text-main); }
     top: 0;
     left: 0;
     height: 100%;
-    width: 800px; /* Matches container max-width to prevent shifting */
+    width: 800px;
     max-width: none;
     object-fit: cover;
 }
