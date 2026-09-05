@@ -53,7 +53,6 @@
                 </div>
             </div>
 
-            <!-- Bento feature cards for visual balance -->
             <div class="bento-card feature-card stagger-4">
                 <i class="fa-solid fa-bolt feature-icon"></i>
                 <h3>Lightning Fast</h3>
@@ -66,17 +65,16 @@
                 <p>Images are processed temporarily and never stored.</p>
             </div>
         </section>
+
         <!-- Infinite Marquee: Integrations -->
         <section class="section marquee-section">
             <h2 class="section-title">Drop backgrounds for your favorite tools.</h2>
             <div class="marquee-container">
                 <div class="marquee-track">
-                    <!-- Original Set -->
                     <div class="integration-card"><i class="fa-brands fa-figma"></i> Perfect for Figma</div>
                     <div class="integration-card"><i class="fa-brands fa-shopify"></i> Shopify Products</div>
                     <div class="integration-card"><i class="fa-brands fa-amazon"></i> Amazon Listings</div>
                     <div class="integration-card"><i class="fa-brands fa-instagram"></i> Instagram Edits</div>
-                    <!-- Duplicated Set for Infinite Loop -->
                     <div class="integration-card"><i class="fa-brands fa-figma"></i> Perfect for Figma</div>
                     <div class="integration-card"><i class="fa-brands fa-shopify"></i> Shopify Products</div>
                     <div class="integration-card"><i class="fa-brands fa-amazon"></i> Amazon Listings</div>
@@ -85,26 +83,21 @@
             </div>
         </section>
 
-
-        <!-- Interactive Before/After Slider Section -->
+        <!-- Interactive Before/After Slider Showcase -->
         <section class="section comparison-showcase">
             <h2 class="section-title">Stunning quality. Drag to compare.</h2>
             
             <div class="interactive-slider-container" id="image-comparison">
-                <!-- Bottom Layer: Transparent Cutout Result -->
                 <div class="img-layer after-layer">
-                    <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=1200&q=80" alt="Without Background" style="filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));">
+                    <img src="assets/nobg.png" alt="Without Background">
                 </div>
                 
-                <!-- Top Layer: Original Image (Clipped dynamically by slider) -->
                 <div class="img-layer before-layer" id="before-layer">
-                    <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=1200&q=80" alt="Original Image">
+                    <img src="assets/dog.jpg" alt="Original Image">
                 </div>
                 
-                <!-- Draggable Range Input -->
                 <input type="range" min="0" max="100" value="50" class="slider-range" id="slider-range">
                 
-                <!-- Custom Visual Handle Bar -->
                 <div class="slider-handle" id="slider-handle">
                     <i class="fa-solid fa-arrows-left-right"></i>
                 </div>
