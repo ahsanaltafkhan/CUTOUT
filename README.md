@@ -49,6 +49,6 @@ cutout/
 
     vercel dev
 ```
-## LOGO : https://thelogocreator.ai/image-to-logo
-## API : https://www.remove.bg/
+# LOGO : https://thelogocreator.ai/image-to-logo
+# API : https://www.remove.bg/
 
