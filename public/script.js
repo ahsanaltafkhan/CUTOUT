@@ -141,19 +141,14 @@ nextBtn.addEventListener('click', () => {
 prevBtn.addEventListener('click', () => {
     carouselTrack.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
 });
-// --- Interactive Before/After Slider Logic ---
 const sliderRange = document.getElementById('slider-range');
 const beforeLayer = document.getElementById('before-layer');
 const sliderHandle = document.getElementById('slider-handle');
 
 if (sliderRange) {
     sliderRange.addEventListener('input', (e) => {
-        const sliderValue = e.target.value;
-        
-        // Adjust the width of the top layer
-        beforeLayer.style.width = `${sliderValue}%`;
-        
-        // Move the visible handle line
-        sliderHandle.style.left = `${sliderValue}%`;
+        const val = e.target.value;
+        beforeLayer.style.width = `${val}%`;
+        sliderHandle.style.left = `${val}%`;
     });
 }
