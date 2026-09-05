@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cutout | AI Background Remover</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Animated Background Blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <main class="container">
+        <header>
+            <h1 class="logo">Cut<span>out</span></h1>
+            <p>Experience seamless, AI-powered background removal.</p>
+        </header>
+
+        <!-- 3D Card Container -->
+        <div class="card-container">
+            <div class="upload-card" id="upload-card">
+                <input type="file" id="file-input" accept="image/*" hidden>
+                
+                <!-- Initial State -->
+                <div class="upload-state active" id="state-upload">
+                    <i class="fa-solid fa-cloud-arrow-up glow-icon"></i>
+                    <h2>Drag & Drop your image here</h2>
+                    <p>or</p>
+                    <button class="btn-primary" onclick="document.getElementById('file-input').click()">Browse Files</button>
+                </div>
+
+                <!-- Loading State -->
+                <div class="upload-state" id="state-loading">
+                    <div class="spinner"></div>
+                    <h2>Processing Magic...</h2>
+                    <p>Extracting your subject with AI.</p>
+                </div>
+
+                <!-- Result State -->
+                <div class="upload-state" id="state-result">
+                    <img id="result-img" src="" alt="Output Image">
+                    <div class="actions">
+                        <a id="download-btn" class="btn-primary" download="cutout-result.png">Download HD</a>
+                        <button class="btn-secondary" id="reset-btn">Upload Another</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>A project by <strong>Ahsan Altaf</strong></p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/thecsgrad/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/ahsan-altaf-khan-7a030221b" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com/ahsanaltafkhan" target="_blank"><i class="fa-brands fa-github"></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
