@@ -48,3 +48,7 @@ cutout/
     Bash
 
     vercel dev
+```
+## LOGO : https://thelogocreator.ai/image-to-logo
+## API : https://www.remove.bg/
+
