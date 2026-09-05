@@ -100,3 +100,44 @@ resetBtn.addEventListener('click', () => {
     fileInput.value = '';
     switchState('state-upload');
 });
+
+// --- FAQ Accordion Logic ---
+const faqQuestions = document.querySelectorAll('.faq-question');
+faqQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const icon = question.querySelector('i');
+        
+        // Close all other open FAQs
+        document.querySelectorAll('.faq-answer').forEach(ans => {
+            if (ans !== answer) ans.style.maxHeight = null;
+        });
+        document.querySelectorAll('.faq-question i').forEach(icn => {
+            if (icn !== icon) icn.className = 'fa-solid fa-plus';
+        });
+
+        // Toggle current FAQ
+        if (answer.style.maxHeight) {
+            answer.style.maxHeight = null;
+            icon.className = 'fa-solid fa-plus';
+        } else {
+            answer.style.maxHeight = answer.scrollHeight + "px";
+            icon.className = 'fa-solid fa-xmark';
+        }
+    });
+});
+
+// --- Carousel Scroll Logic ---
+const carouselTrack = document.getElementById('carousel-track');
+const prevBtn = document.querySelector('.prev-btn');
+const nextBtn = document.querySelector('.next-btn');
+
+const scrollAmount = 320; // Width of card + gap
+
+nextBtn.addEventListener('click', () => {
+    carouselTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+});
+
+prevBtn.addEventListener('click', () => {
+    carouselTrack.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+});
